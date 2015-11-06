@@ -1,0 +1,20 @@
+AC 1MIN 		1-1.int
+必死 99.99％	1-2.long long int
+AC 10MIN 	2-1.selete sort
+必死 99.99％	2-2.tle  
+AC 10MIN		3-1.for+for
+要看人30MIN	3-2.for+for+if
+AC 10MIN		4-1.掃過去兩次
+AC 10MIN		4-2.gcd
+要看人15MIN  	5-1.字串翻轉
+要看人30MIN	5-2.字串比對
+AC 10MIN		6-1.純if
+要看人15MIN	6-2.純if
+		7-1.mod  （函式會教嗎）
+		7-2.貯存陣列（函式會教嗎）
+要看人60MIN	8-1.換時間
+要看人60MIN	8-2.換時間 處理月份不同
+AC 30MIN		9-1.10 到2到 10
+要看人30MIN	9-2.16 到10
+我 60MIN		10-1.  bj4  卡題用
+加上前面共70MIN	10-2.  bj4  卡題用

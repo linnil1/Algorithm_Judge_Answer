@@ -1,4 +1,19 @@
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+#include<cstdio>
+#include<iostream>
+#include<cctype>
+#include<cmath>
+#include<cstdlib>
+#include<algorithm>
+#include<vector>
+#include<queue>
+#include<stack>
+#include<set>
+#include<map>
+#include<string>
+#include<bitset>
+//#include<utility>
+#include<limits.h>
 #define ll long long 
 #define M 100010
 #define MOD 1000000007
@@ -36,8 +51,18 @@ int main(){
 	//freopen("..\\in.txt","r",stdin);
 //int times;cin >> times ;for(int cases=1;cases<=times;++cases)
 {	
-	int n;
-	while(~scanf("%d",&n)){
+	int a,b;
+	while(~scanf("%d:%d",&a,&b)){
+		a%=12;
+		double ta,tb;
+		ta=30*a + b*0.5;
+		tb = b*6;
+		ta -= tb ;
+		if(ta<0)
+			ta+=360;
+		if(ta>180)
+			ta = 360-ta;
+		printf("%.2lf\n",ta);
 		
 	};
 }

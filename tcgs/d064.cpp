@@ -1,4 +1,21 @@
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+
+#include<cstdio>
+#include<iostream>
+#include<cctype>
+#include<cmath>
+#include<cstdlib>
+#include<algorithm>
+#include<vector>
+#include<queue>
+#include<stack>
+#include<set>
+#include<map>
+#include<string>
+#include<cstring>
+#include<bitset>
+//#include<utility>
+#include<limits.h>
 #define ll long long 
 #define M 100010
 #define MOD 1000000007
@@ -24,20 +41,39 @@ using std::string;using std::sort;using std::swap;
 #define ARRE(arr,n) int arr[n+2];FRE(i,n)
 #define VMP std::vector<MP>
 #define MP std::pair<int,int>
-#define IN(a) scanf("%d",&a)
-#define INN(a,b) scanf("%d%d",&a,&b)
+#define IN(a)int a; scanf("%d",&a)
+#define INN(a,b)int a,b; scanf("%d%d",&a,&b)
 
 //using namespace std;
-
-
+string max;
+int use[3];
+void dfs(int t,string *s,string now){
+	if(t==3){
+		if(now > max )
+			max = now;
+		return ;
+	}
+	FR(i,3)
+		if(use[i]){
+			use[i]=0;
+			dfs(t+1,s,now+s[i]);
+			use[i]=1;
+		}
+}
+	
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
 
 	//freopen("..\\in.txt","r",stdin);
 //int times;cin >> times ;for(int cases=1;cases<=times;++cases)
 {	
-	int n;
-	while(~scanf("%d",&n)){
+	string s[3];
+	while(cin>>s[0]>>s[1]>>s[2]){
+		max="";
+		memset(use,1,sizeof(use));
+		dfs(0,s,"");
+		cout << max<<endl;
+
 		
 	};
 }

@@ -1,4 +1,19 @@
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+#include<cstdio>
+#include<iostream>
+#include<cctype>
+#include<cmath>
+#include<cstdlib>
+#include<algorithm>
+#include<vector>
+#include<queue>
+#include<stack>
+#include<set>
+#include<map>
+#include<string>
+#include<bitset>
+//#include<utility>
+#include<limits.h>
 #define ll long long 
 #define M 100010
 #define MOD 1000000007
@@ -36,8 +51,15 @@ int main(){
 	//freopen("..\\in.txt","r",stdin);
 //int times;cin >> times ;for(int cases=1;cases<=times;++cases)
 {	
-	int n;
-	while(~scanf("%d",&n)){
+	int a,b,c;
+	while(~scanf("%d%d%d",&a,&b,&c)){
+		int d=b*b-4*a*c;
+		if(d<0)
+			puts("No real root");
+		else if(d==0)
+			printf("Two same roots x=%.2lf\n",(-b/2.0f/a));
+		else
+			printf("Two different roots x1=%.2lf , x2=%.2lf\n",(-b+sqrt(d))/2/a,(-b-sqrt(d))/2/a);
 		
 	};
 }

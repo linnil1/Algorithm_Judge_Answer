@@ -1,4 +1,20 @@
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+
+#include<cstdio>
+#include<iostream>
+#include<cctype>
+#include<cmath>
+#include<cstdlib>
+#include<algorithm>
+#include<vector>
+#include<queue>
+#include<stack>
+#include<set>
+#include<map>
+#include<string>
+#include<bitset>
+//#include<utility>
+#include<limits.h>
 #define ll long long 
 #define M 100010
 #define MOD 1000000007
@@ -30,6 +46,23 @@ using std::string;using std::sort;using std::swap;
 //using namespace std;
 
 
+
+struct xy
+{
+	int x,y;
+	xy(){};
+	xy(int _x,int _y):x(_x),y(_y){};
+	
+	bool operator < (const xy &b)const
+	{
+		if(x!=b.x)
+			return x<b.x;
+	}
+};
+
+
+
+
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
 
@@ -38,7 +71,28 @@ int main(){
 {	
 	int n;
 	while(~scanf("%d",&n)){
+		xy X[n];
+		int x[n],y[n];
+		FR(i,n){
+			IN(X[i].x);
+			X[i].y=i;
+		}
+		std::sort(X,X+n);
+		FR(i,n)
+			x[X[i].y]=i;
+		FR(i,n){
+			IN(X[i].x);
+			X[i].y=i;
+		}
+		std::sort(X,X+n);
+		FR(i,n)
+			y[X[i].y]=i;
 		
+		int sum=0;
+		FR(i,n)
+			sum += (x[i]-y[i])*(x[i]-y[i]);
+//		printf("%d\n",sum);
+		printf("%+.3lf\n",1-(double)6*sum/n/(n*n-1));
 	};
 }
 	return 0;

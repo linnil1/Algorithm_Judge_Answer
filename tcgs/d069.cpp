@@ -1,4 +1,19 @@
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+#include<cstdio>
+#include<iostream>
+#include<cctype>
+#include<cmath>
+#include<cstdlib>
+#include<algorithm>
+#include<vector>
+#include<queue>
+#include<stack>
+#include<set>
+#include<map>
+#include<string>
+#include<bitset>
+//#include<utility>
+#include<limits.h>
 #define ll long long 
 #define M 100010
 #define MOD 1000000007
@@ -36,9 +51,23 @@ int main(){
 	//freopen("..\\in.txt","r",stdin);
 //int times;cin >> times ;for(int cases=1;cases<=times;++cases)
 {	
-	int n;
-	while(~scanf("%d",&n)){
-		
+	string s[3]={"甲","乙","丙"};
+	int a[3];
+	while(~scanf("%d",a)){
+		INN(a[1],a[2]);
+		int th1,th2;
+		th1=1;th2=0;
+		if(a[th2]>a[th1])
+			swap(th1,th2);
+		if(a[2] > a[th2])
+			th2=2;
+		if(a[th2]>a[th1])
+			swap(th1,th2);
+		if(a[th1] > a[th2]+a[3-th1-th2])
+			cout << s[th1] ;
+		else
+			cout << s[th2];
+		puts("");
 	};
 }
 	return 0;

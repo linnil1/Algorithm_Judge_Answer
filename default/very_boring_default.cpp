@@ -10,6 +10,7 @@
 #include<set>
 #include<map>
 #include<string>
+#include<cstring>
 #include<bitset>
 #include<utility>
 #include<limits.h>

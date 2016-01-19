@@ -1,3 +1,4 @@
+char need_time=0;
 #include<bits/stdc++.h>
 #define ll long long 
 #define M 100010
@@ -32,15 +33,13 @@ using std::string;using std::sort;using std::swap;
 
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
+	int time,go_t=0;if(need_time)scanf("%d",&time);
 
-	//freopen("..\\in.txt","r",stdin);
-//int times;cin >> times ;for(int cases=1;cases<=times;++cases)
-{	
 	int n;
 	while(~scanf("%d",&n)){
 		
+		if(need_time && ++go_t==time)break;
 	};
-}
 	return 0;
 };
 /*

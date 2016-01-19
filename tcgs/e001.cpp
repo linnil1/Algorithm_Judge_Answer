@@ -1,4 +1,3 @@
-char need_time=0;
 //#include<bits/stdc++.h>
 #include<cstdio>
 #include<iostream>
@@ -12,7 +11,6 @@ char need_time=0;
 #include<set>
 #include<map>
 #include<string>
-#include<cstring>
 #include<bitset>
 //#include<utility>
 #include<limits.h>
@@ -47,15 +45,49 @@ using std::string;using std::sort;using std::swap;
 //using namespace std;
 
 
+
+struct xy
+{
+	int x,y,val;
+	xy(){};
+	xy(int _x,int _y):x(_x),y(_y){};
+	
+	bool operator < (const xy &b)const
+	{
+		if(x!=b.x)
+			return x<b.x;
+		else if(y!=b.y)
+			return y<b.y;
+		else
+			return val<b.val;
+	}
+};
+
+
+
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
-	int time,go_t=0;if(need_time)scanf("%d",&time);
 
+	//freopen("..\\in.txt","r",stdin);
+//int times;cin >> times ;for(int cases=1;cases<=times;++cases)
+{	
 	int n;
 	while(~scanf("%d",&n)){
+		xy v[n];
+		FR(i,n){
+			INN(v[i].x,v[i].y);
+			v[i].val=i;
+		}
+		std::sort(v,v+n);
 		
-		if(need_time && ++go_t==time)break;
+		int sum=0;
+		FR(i,n)
+			sum += std::abs(i-v[i].val);
+
+		printf("%d\n",sum);
+		
 	};
+}
 	return 0;
 };
 /*

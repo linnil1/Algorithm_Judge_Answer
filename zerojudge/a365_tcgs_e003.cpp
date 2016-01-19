@@ -1,4 +1,3 @@
-char need_time=0;
 //#include<bits/stdc++.h>
 #include<cstdio>
 #include<iostream>
@@ -46,16 +45,46 @@ using std::string;using std::sort;using std::swap;
 
 //using namespace std;
 
+int g[1<<12];
+
+void init(){
+	FR(i,1<<12)
+		g[i]=-1;
+	//lose 0 win 1
+	g[0]=1;
+}
+
+int play(int now){
+//	printf("%d ",now);
+	int t;
+	if(g[now]>=0)
+		return g[now];
+	int mask[12]={0x30,0x18,0xC,0x300,0x180,0xC0,
+				  0x12,0x110,0x900,0x9,0x88,0x480};
+	for(int i=0;i<12;++i)
+		if( ( (1<<i)&now) && !play( (1<<i)^now) )
+			return g[now]=1;
+		else if( (mask[i]&now)==mask[i] && !play(mask[i]^now) )
+			return g[now]=1;
+	return g[now]=0;
+}
 
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
-	int time,go_t=0;if(need_time)scanf("%d",&time);
 
+	//freopen("..\\in.txt","r",stdin);
+	init();
+int times;cin >> times ;for(int cases=1;cases<=times;++cases)
+{	
+	char c[15];
 	int n;
-	while(~scanf("%d",&n)){
+	while(~scanf("%s",c)){
+		for(int i=n=0;c[i];++i)
+			n = n*2 + c[i]-'0';
+		printf("%d",play(n));
 		
-		if(need_time && ++go_t==time)break;
 	};
+}
 	return 0;
 };
 /*

@@ -1,4 +1,3 @@
-char need_time=0;
 //#include<bits/stdc++.h>
 #include<cstdio>
 #include<iostream>
@@ -49,13 +48,26 @@ using std::string;using std::sort;using std::swap;
 
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
-	int time,go_t=0;if(need_time)scanf("%d",&time);
 
+	//freopen("..\\in.txt","r",stdin);
+//int times;cin >> times ;for(int cases=1;cases<=times;++cases)
+{	
 	int n;
-	while(~scanf("%d",&n)){
-		
-		if(need_time && ++go_t==time)break;
+	char dir[5];
+	while(~scanf("%s",dir)){
+		int a,x,y;
+		switch(dir[0]){
+			case 'B':break;
+			case 'X':IN(a);x=a;break;
+			case 'Y':IN(a);y=a;break;
+			case 'U':IN(a);y+=a;break;
+			case 'D':IN(a);y-=a;break;
+			case 'R':IN(a);x+=a;break;
+			case 'L':IN(a);x-=a;break;
+			case 'E':printf("%d\n%d\n",x,y);break;
+		}
 	};
+}
 	return 0;
 };
 /*

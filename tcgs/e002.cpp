@@ -1,4 +1,3 @@
-char need_time=0;
 //#include<bits/stdc++.h>
 #include<cstdio>
 #include<iostream>
@@ -46,16 +45,60 @@ using std::string;using std::sort;using std::swap;
 
 //using namespace std;
 
+bool com(char *a,char *b,int c){
+	FR(i,c)
+		if(a[i]<b[i])
+			return 1;
+		else if (a[i]>b[i])
+			return 0;
+	return 1;
+}
 
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
-	int time,go_t=0;if(need_time)scanf("%d",&time);
+
+	//freopen("..\\in.txt","r",stdin);
+//int times;cin >> times ;for(int cases=1;cases<=times;++cases)
+{	
+	char dp[501][4];
+	memset(dp,99,sizeof(dp));
+	dp[0][0]=98;
+	FRE(i,3){
+		for(int k=500;k>=0;--k)
+			for(int j=0,sum=0;sum+k<=500;){
+				if( j < dp[k][i-1] && com(dp[k],dp[k+sum],i)){
+					memcpy(dp[k+sum],dp[k],4);
+					dp[k+sum][i]=j;
+				}
+			++j;sum=1;
+			FR(k,4-i)
+				sum*=j-k;
+			FR(k,4-i)
+				sum/=k+1;
+//			printf("%d ",sum);
+		}
+	}
+	
+
+//	FR(i,501){
+//		FR(j,4)
+//			printf("%d ",dp[i][j]);
+//		puts("");
+//	}
 
 	int n;
 	while(~scanf("%d",&n)){
-		
-		if(need_time && ++go_t==time)break;
+		FR(i,n){
+			int x;
+			IN(x);
+			FRE(j,3)
+				printf("%d",dp[x][j]);
+			puts("");
+		}
+
+
 	};
+}
 	return 0;
 };
 /*

@@ -1,5 +1,5 @@
-char need_time=0;
 //#include<bits/stdc++.h>
+
 #include<cstdio>
 #include<iostream>
 #include<cctype>
@@ -12,7 +12,6 @@ char need_time=0;
 #include<set>
 #include<map>
 #include<string>
-#include<cstring>
 #include<bitset>
 //#include<utility>
 #include<limits.h>
@@ -47,15 +46,80 @@ using std::string;using std::sort;using std::swap;
 //using namespace std;
 
 
+struct disjointset
+{
+	static const int MM=10100;
+	int s[MM],n,group;
+	
+	void init(int _n){
+		group = n = _n ;
+		for(int i=0;i<=n;++i)
+			s[i] = i ;
+	};	
+	inline int find(int a){
+		return s[a]==a ? a : ( s[a] = find(s[a]) );
+	}
+	int unin(int a,int b){
+		if(find(a)!=find(b)){
+			s[find(a)] = find(b);
+			--group;
+			return 1;
+		}
+		else
+			return 0;
+	}	
+	
+}disj;
+
+
+struct xy{
+	int s,t,v;
+	bool operator < (const xy &a)const{
+		return v <a.v;
+	}
+};
+
+
+
+
+
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
-	int time,go_t=0;if(need_time)scanf("%d",&time);
 
-	int n;
-	while(~scanf("%d",&n)){
+	//freopen("..\\in.txt","r",stdin);
+//int times;cin >> times ;for(int cases=1;cases<=times;++cases)
+{	
+	int n,m;
+	while(~scanf("%d%d",&n,&m)){
 		
-		if(need_time && ++go_t==time)break;
+		xy r[m];
+		FR(i,m){
+			char t[100];
+			scanf("%s",t);	r[i].s=atoi(t+1)-1;
+			scanf("%s",t);  r[i].t=atoi(t+1)-1;
+			IN(r[i].v);
+		}
+		sort(r,r+m);
+
+		int sum=0,now=0;
+		disj.init(n);
+		MP ans[n-1];
+		for(int i=0;i<m&& disj.group>1;++i)
+			if(disj.unin(r[i].s,r[i].t)){
+				sum+=r[i].v;
+				ans[now++] = mp(r[i].s,r[i].t);
+			}
+		sort(ans,ans+now);
+		FR(i,now)
+			printf("(W%d W%d) ",ans[i].ft+1,ans[i].sd+1);
+//			cout << "(W" << ans[i].ft+1 <<" W"<<ans[i].sd+1 <<") ";
+		printf("\n%d\n",sum);
+
+
+
+
 	};
+}
 	return 0;
 };
 /*

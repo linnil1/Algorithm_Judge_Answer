@@ -32,7 +32,7 @@ using std::string;using std::sort;using std::swap;
 
 
 int main(){
-	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
+//	std::ios::sync_with_stdio(false);std::cin.tie(0); 
 	int time,go_t=0;if(need_time)scanf("%d",&time);
 
 	int n;

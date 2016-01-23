@@ -1,3 +1,4 @@
+char need_time=1;
 //#include<bits/stdc++.h>
 #include<cstdio>
 #include<iostream>
@@ -11,6 +12,7 @@
 #include<set>
 #include<map>
 #include<string>
+#include<cstring>
 #include<bitset>
 //#include<utility>
 #include<limits.h>
@@ -43,55 +45,26 @@ using std::string;using std::sort;using std::swap;
 #define INN(a,b) scanf("%d%d",&a,&b)
 
 //using namespace std;
-char ans[1000],c[1000],anss;
-void in_post(int &now){//(A+B*(C-D)+E)*((F+G)/(H*I)+J)
-	char st[2]={0};
-	for(now;c[now];++now)
-		if(c[now]=='('){
-			++now;
-			in_post(now);
-			if(st[1])
-				ans[anss++]=st[1];
-			st[1]=0;
-		}
-		else if(c[now]==')')
-			break;
-		else if(c[now]=='*'||c[now]=='/'){
-			if(st[1])
-				ans[anss++]=st[1];
-			st[1]=c[now];
-		}
-		else if(c[now]=='+'||c[now]=='-'){
-			BFR(i,2)
-				if(st[i]){
-					ans[anss++]=st[i];
-					st[i]=0;
-				}
-			st[0] = c[now] ;
-		}
-		else
-			ans[anss++]=c[now];
-	BFR(i,2)
-		if(st[i]){
-			ans[anss++]=st[i];
-			st[i]=0;
-		}
-}
+
 
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
+	int time,go_t=0;if(need_time)scanf("%d",&time);
 
-	//freopen("..\\in.txt","r",stdin);
-//int times;cin >> times ;for(int cases=1;cases<=times;++cases)
-{	
-	while(~scanf("%s",c)){
-		int now=0;anss=0;
-		in_post(now);
-		ans[anss++]='\0';
-		printf("%s\n",ans);
+	int n;
+	while(~scanf("%d",&n)){
+		int a,b,c;
+		IN(a);INN(b,c);
+		int sum = (a+c),div=2;
+		if(sum<b*2)
+			sum=b*2;
+		sum*=n;
+		if(div==2 && sum%2==0)
+			sum>>=1,div>>=1;
+		printf("%d/%d\n",sum,div);
 		
+		if(need_time && ++go_t==time)break;
 	};
-}
 	return 0;
 };
 /*

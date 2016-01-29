@@ -46,50 +46,52 @@ using std::string;using std::sort;using std::swap;
 
 //using namespace std;
 
-int fight(int a,int b){
-	if(a<b)swap(a,b);
-	std::set< MP > s;
-	while(1){
-		if(a==b)
-			return 1;
-		else if( s.count( mp(a,b) ))
+VI v[14];
+int ans[14],anss;
+int n,m;
+
+bool comp(VI &v,int *ans,int now) {
+	for(int i=0;i<v.size();++i)
+		if(ans[now-1-i] != v[v.size()-1-i])
 			return 0;
-		else
-			s.insert( mp(a,b) );
-		a = a-b;
-		b+=b;
-		if(a<b)swap(a,b);
-	}
+	return 1;
 }
 
+void dfs(int now,int con){
+	if(now>=2){
+		FR(j,m)
+			if(v[j].size()<=now && comp(v[j],ans,now) )
+				return ;
+		++anss;
+		if(now==n)
+			return ;
+	}
+
+	for(;con<n;++con){
+		ans[now]=con;
+		dfs(now+1,con+1);
+	}
+}
+				
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
 	int time,go_t=0;if(need_time)scanf("%d",&time);
-/*	FOR(i,1,10000){
-		FOR(j,1,i)
-			if( __builtin_popcount((i/std::__gcd(i,j) + j/std::__gcd(i,j)))==1 )
-				if(!fight(i,j))
-					printf("%d %d\n",i,j);
-//		puts("");
-	}
-	puts("zxc");
-*/
 
-	int n;
-	while(~scanf("%d",&n)){
-		int arr[n];
-		FR(i,n)
-			IN(arr[i]);
-		int sum=0;
-		FR(i,n)
-			FR(j,i)
-			{
-				int k = std::__gcd(arr[i],arr[j]);
-				if( __builtin_popcount(arr[i]/k + arr[j]/k)==1 )
-					++sum;
+	while(~scanf("%d%d",&n,&m)){
+		FR(i,m){
+			int t;IN(t);
+			v[i]=VI();
+			FR(j,t){
+				int k;IN(k);
+				v[i].pb(k-1);
 			}
-		printf("%d\n",sum);
-				
+		}
+		anss=0;
+		dfs(0,0);
+		if(anss)
+			printf("%d\n",anss);
+		else
+			puts("so sad");
 		
 		if(need_time && ++go_t==time)break;
 	};

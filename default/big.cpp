@@ -198,7 +198,7 @@ private :
 	char neg;
 
 public:
-	Big(char _n=0,Big_pos b=Big_pos()):neg(_n),Big_pos(b){};
+	Big(char _n=0,Big_pos b=Big_pos()):neg(_n),Big_pos(b){if(b.size()==0)neg=0;};//be careful zero
 	Big(std::string s){
 		if(s[0]=='-')//be careful
 			*this = Big(1,Big_pos(std::string(s.begin()+1,s.end()) ));
@@ -207,7 +207,8 @@ public:
 	}
 
 	Big turn(){
-		neg^=1;
+		if(size())//be careful for 0
+			neg^=1;
 		return *this;
 	}
 
@@ -236,8 +237,13 @@ public:
 		return Big(neg^b.neg, Big_pos::operator%(b));
 	}
 	
-	friend std::ostream& operator<< (std::ostream &out,Big &b){
-		if(b.neg && b.size())
+	Big operator <(Big &b){
+		if(neg != b.neg)return neg;
+		return Big_pos::operator<(b) ^ neg ;
+	}
+	
+	friend std::ostream& operator<< (std::ostream &out,Big b){
+		if(b.neg)//if it is ok no -0
 			out <<'-';
 		out << static_cast<Big_pos &>(b);
 		return out;

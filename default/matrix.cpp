@@ -56,7 +56,7 @@ struct fastmat
 	}
 	
 	ll want(int n){
-		mat t = pow(gobase(),n)  * init();  //f0 = f1 = 1 , fn=fn-1 + fn-2
+		mat t = gobase().pow(n)  * init();  //f0 = f1 = 1 , fn=fn-1 + fn-2
 		return t.m[0][0];// 0th = f0
 	}
 	

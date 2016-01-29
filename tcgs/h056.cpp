@@ -46,51 +46,77 @@ using std::string;using std::sort;using std::swap;
 
 //using namespace std;
 
-int fight(int a,int b){
-	if(a<b)swap(a,b);
-	std::set< MP > s;
-	while(1){
-		if(a==b)
-			return 1;
-		else if( s.count( mp(a,b) ))
-			return 0;
-		else
-			s.insert( mp(a,b) );
-		a = a-b;
-		b+=b;
-		if(a<b)swap(a,b);
+VMP v[1010];
+int n;
+
+bool cango(int f,int s){
+	int val[n],use[n];
+	FR(i,n)val[i]=INT_MAX,use[i]=1;
+	val[f]=use[f]=0;
+	QI q;q.push(f);
+	int one=0;
+	while(q.size())
+	{
+		int now=q.front();q.pop();
+		use[now]=1;
+		if(val[now]>s)
+			continue;
+		if(one && now==f)
+		   if( val[now]<=s )
+				return 1;
+		   else
+				continue;
+
+		FR(i,v[now].size())
+		{
+			MP &k = v[now][i];
+			if( val[now] + k.sd < val[k.ft])
+			{
+				val[k.ft] = val[now] + k.sd ;
+				if(use[k.ft])
+				{
+					q.push(k.ft);
+					use[k.ft]=0;
+				}
+			}
+		}
+		
+		if(!one)
+		{
+			val[f]=INT_MAX;
+			++one;
+		}
 	}
+	return 0;
 }
 
 int main(){
 	//std::ios::sync_with_stdio(false);std::cin.tie(0); 
 	int time,go_t=0;if(need_time)scanf("%d",&time);
-/*	FOR(i,1,10000){
-		FOR(j,1,i)
-			if( __builtin_popcount((i/std::__gcd(i,j) + j/std::__gcd(i,j)))==1 )
-				if(!fight(i,j))
-					printf("%d %d\n",i,j);
-//		puts("");
-	}
-	puts("zxc");
-*/
 
-	int n;
-	while(~scanf("%d",&n)){
-		int arr[n];
+	int m,s;
+	while(~scanf("%d%d%d",&n,&m,&s)){
 		FR(i,n)
-			IN(arr[i]);
-		int sum=0;
+			v[i] = VMP();
+		FR(i,m)
+		{
+			int x,y,r;
+			INN(x,y);
+			IN(r);
+			v[x-1].pb( mp(y-1,r) );
+		}
+
+		VI ans;
 		FR(i,n)
-			FR(j,i)
-			{
-				int k = std::__gcd(arr[i],arr[j]);
-				if( __builtin_popcount(arr[i]/k + arr[j]/k)==1 )
-					++sum;
-			}
-		printf("%d\n",sum);
-				
-		
+			if( cango(i,s) )
+				ans.pb(i+1);
+		printf("%d\n",(int)ans.size());
+		if(ans.size()){
+			FR(i,ans.size())
+				printf("%d ",ans[i]);
+			puts("");
+		}
+
 		if(need_time && ++go_t==time)break;
 	};
 	return 0;

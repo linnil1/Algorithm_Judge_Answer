@@ -53,6 +53,7 @@ void pull(treap *a){
 	a->max  = MAXX( trmin(a->r) ,trmin(a->l),a->val);
 	a->sum  = trsum(a->r)+trsum(a->l) + a->val ;
 }
+
 void push(treap *a){
 	if(a->turn){
 		a->turn = 0 ;
@@ -104,6 +105,7 @@ void instr(){
 	split( root,x,l,r);
 	root = merge ( merge( l, new treap(v) ),r );
 }
+
 void deltr(){
 	int x;
 	cin >> x;

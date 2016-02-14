@@ -8,11 +8,8 @@ struct treap{
 	treap(){};
 	treap(int _val):l(NULL),r(NULL),pri(rand()),val(_val),
 					size(1),max(_val),sum(_val){}
-
-	
 	
 }treap::mem[MM],*treap::pmem = treap::mem;
-
 
 int size(treap *a){return a ? a->size : 0 ;} 
 int max (treap *a){return a ? a->max  : 0 ;} 
